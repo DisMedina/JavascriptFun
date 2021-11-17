@@ -21,6 +21,14 @@ function weeklyHigh() {
     document.getElementById('high').innerText = high;
 }
 
+function calcGoa() {
+    const totalValue = entries.reduce(reducer).toFixed(1);
+    const completedPercent = totalValue / ( goal / 100 );
+    const progressCircle = document.querySelector('#progressCircle');
+    if (completedPercent > 100) completedPercent === 100;
+    progressCircle.style.background = `conic-gradient(#70db70 ${completedPercent}%, #2d3740 ${completedPercent}% 100%)`;
+}
+
 function calcTotal() {
     const totalValue = entries.reduce(reducer).toFixed(1);
     document.getElementById('total').innerText = totalValue;
@@ -42,6 +50,7 @@ function handleSubmit(event) {
     calcTotal();
     calcAverage();
     weeklyHigh();
+    calcGoa();
 }
 
 const form = document
