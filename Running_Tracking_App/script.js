@@ -1,5 +1,8 @@
+const goal = 25;
 let entries = [];
 const entriesWrapper = document.querySelector('#entries');
+document.querySelector('#target').innerText = goal;
+
 function addNewEntry(newEntry) {
     entriesWrapper.removeChild(entriesWrapper.firstElementChild);
     const listItem = document.createElement('li');
@@ -11,6 +14,11 @@ function addNewEntry(newEntry) {
 
 function reducer(total, currentValue) {
     return total + currentValue;
+}
+
+function weeklyHigh() {
+    const high = Math.max(...entries);
+    document.getElementById('high').innerText = high;
 }
 
 function calcTotal() {
@@ -33,6 +41,7 @@ function handleSubmit(event) {
     addNewEntry(entry);
     calcTotal();
     calcAverage();
+    weeklyHigh();
 }
 
 const form = document
